@@ -6,11 +6,13 @@ f = open(filename,'a+')
 s = []
 ListOne=[]
 ListTwo=[]
+ii = 3000
 
 def PriceCheck(ListOne, ListTwo):
-	i = 2
+	global ii
+	ii += 1000
 	#print(ListOne)
-	
+	sys.setrecursionlimit(ii)
 	for x,y in zip(ListOne,ListTwo):
 		if x != y:
 			print("Price has changed from ",x," ",y)
@@ -28,6 +30,7 @@ def PriceCheck(ListOne, ListTwo):
 	GetPrice()
 				
 def GetPrice():
+	
 	ListOne=[]
 	ListTwo=[]
 	filename = 'ETHSKY.csv'
@@ -41,7 +44,6 @@ def GetPrice():
 	while True:
 		try:
 			
-
 			r = requests.get('https://www.binance.com/api/v1/ticker/price')
 			time.sleep(0.1)
 			DateS = str(datetime.datetime.now())
@@ -71,7 +73,7 @@ def GetPrice():
 			DateS = str(datetime.datetime.now())
 			array = json.loads(r.text)
 			lastprice = array
-
+			
 
 			ticker_list=[]
 
