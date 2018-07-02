@@ -1,7 +1,7 @@
 
 import os,requests,datetime,time,sys,json
 print("\033[H\033[J")
-filename = 'ETHSKY.csv'
+filename = 'crypto.csv'
 f = open(filename,'a+')
 s = []
 ListOne=[]
@@ -11,10 +11,10 @@ def PriceCheck(ListOne, ListTwo):
 	i = 2
 	#print(ListOne)
 	
-	for x,y in zip(enumerate(ListOne),enumerate(ListTwo)):
+	for x,y in zip(ListOne,ListTwo):
 		if x != y:
-			print("Price has changed from ",x," to ",y)
-		
+			print("Price has changed from ",x," ",y)
+			f.write("".join((str(y),'\n')))
 			
 		#print(x)
 		#for y in ListTwo:
@@ -38,7 +38,7 @@ def GetPrice():
         #array = json.loads(json.dumps(r.json()))
 
 	#print("Machine Learning the Crypto World\r\n\r\n")
-	while 1:
+	while True:
 		try:
 			
 
@@ -58,7 +58,7 @@ def GetPrice():
 			for x in array:
 
 				#ListOne.append(x['price'])
-				ticker_list.append([x['symbol'] + " " + x['price']])
+				ticker_list.extend([x['symbol'] + "," + x['price']])
 			
 			
 			
@@ -82,7 +82,7 @@ def GetPrice():
 			for x in array:
 
                                 #ListOne.append(x['price'])
-				ticker_list.append([x['symbol'] + " " + x['price']])
+				ticker_list.extend([x['symbol'] + "," + x['price']])
 
 
 
