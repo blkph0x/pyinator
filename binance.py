@@ -27,7 +27,7 @@ def PriceCheck(ListOne, ListTwo):
 				#print(x,"has chanaged to",y)
 		
 		
-	GetPrice()
+
 				
 def GetPrice():
 	
@@ -89,7 +89,12 @@ def GetPrice():
 
 
 			ListTwo = ticker_list
-			PriceCheck(ListOne,ListTwo)
+			for x,y in zip(ListOne,ListTwo):
+                		if x != y:
+                        		print("Price has changed from ",x," ",y)
+                        		f.write("".join((str(y),'\n')))
+                                                                                                       
+			#PriceCheck(ListOne,ListTwo)
 			ListOne = []
 			ListTwo = []
 						#print(f"",ticker_list[2],end="\r",flush=True)
