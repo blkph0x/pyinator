@@ -12,7 +12,6 @@ def GetPrice():
 
 	ListOne=[]
 	ListTwo=[]
-	filename = 'ETHSKY.csv'
 	#infinite loop
 	while True:
 		try:
