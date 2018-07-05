@@ -48,7 +48,17 @@ def GetPrice():
 					pdiff = Pdiff0 - Pdiff1
 					PCDIFF = float(pdiff) / float(Pdiff0)
 					PCCHANGE = PCDIFF * 100
-					print("Price has changed from ",x," ",y," Percent change of", PCCHANGE)
+					SYM = str(x.split(',')[0])
+					SYMLNG = len(SYM)
+					if SYM[SYMLNG-3] == 'S':
+						SYMBOL = "USDT"
+					else:
+						SYMBOL = SYM[SYMLNG-3]
+						SYMBOL += SYM[SYMLNG-2]
+						SYMBOL += SYM[SYMLNG-1]
+						SYMBOL1 = SYM.split(SYMBOL)[0]
+						#print(SYMBOL)
+					print(SYMBOL1," Price has changed from ",x.split(',')[1],SYMBOL, " To ",y.split(',')[1],SYMBOL," Percent change of", PCCHANGE)
 					f.write("".join((str(y),'\n')))
 			ListOne = []
 			ListTwo = []
