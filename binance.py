@@ -56,8 +56,8 @@ def GetPrice():
 						SYMBOL = SYM[SYMLNG-3]
 						SYMBOL += SYM[SYMLNG-2]
 						SYMBOL += SYM[SYMLNG-1]
-						SYMBOL1 = SYM.split(SYMBOL)[0]
-						#print(SYMBOL)
+					SYMBOL1 = SYM.split(SYMBOL)[0]
+						
 					print(SYMBOL1," Price has changed from ",x.split(',')[1],SYMBOL, " To ",y.split(',')[1],SYMBOL," Percent change of", PCCHANGE)
 					f.write("".join((str(y),'\n')))
 			ListOne = []
