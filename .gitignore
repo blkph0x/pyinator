@@ -1,2 +1,2 @@
 # only ignore the TODO file in the current directory, not subdir/TODO
-/CRYPTO.csv
+/crypto.csv
