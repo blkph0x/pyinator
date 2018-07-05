@@ -42,15 +42,20 @@ def GetPrice():
 			ListTwo = ticker_list
 			#step thugh each entry of each list and compair if not eq then price changed
 			for x,y in zip(ListOne,ListTwo):
-                		if x != y:
-                        		print("Price has changed from ",x," ",y)
-                        		f.write("".join((str(y),'\n')))
+				if x != y:
+					Pdiff0 = float(x.split(',')[1])
+					Pdiff1 = float(y.split(',')[1])
+					pdiff = Pdiff0 - Pdiff1
+					PCDIFF = float(pdiff) / float(Pdiff0)
+					PCCHANGE = PCDIFF * 100
+					print("Price has changed from ",x," ",y," Percent change of", PCCHANGE)
+					f.write("".join((str(y),'\n')))
 			ListOne = []
 			ListTwo = []
 		#Catch Ctrl+c
 		except KeyboardInterrupt:
 			sys.exit()
-		except:
-			print("Something Gone Wrong Trying Again")
-			GetPrice()
+		#except:
+			#print("Something Gone Wrong Trying Again")
+			#GetPrice()
 GetPrice()
