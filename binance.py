@@ -3,9 +3,6 @@ import os,requests,datetime,time,sys,json
 print("\033[H\033[J")
 filename = 'crypto.csv'
 f = open(filename,'a+')
-s = []
-ListOne=[]
-ListTwo=[]
 
 
 def GetPrice():
@@ -17,8 +14,8 @@ def GetPrice():
 		try:
 			#request One
 			r = requests.get('https://www.binance.com/api/v1/ticker/price')
-			time.sleep(0.1)
-			DateS = str(datetime.datetime.now())
+			time.sleep(2)
+			DateS = datetime.datetime.now()
 			array = json.loads(r.text)
 			lastprice = array
 			ticker_list=[]
@@ -32,7 +29,7 @@ def GetPrice():
 			#Request Two
 			r = requests.get('https://www.binance.com/api/v1/ticker/price')
 			time.sleep(0.1)
-			DateS = str(datetime.datetime.now())
+			DateS = datetime.datetime.now()
 			array = json.loads(r.text)
 			lastprice = array
 			ticker_list=[]
@@ -58,7 +55,7 @@ def GetPrice():
 						SYMBOL += SYM[SYMLNG-1]
 					SYMBOL1 = SYM.split(SYMBOL)[0]
 						
-					print(SYMBOL1," Price has changed from ",x.split(',')[1],SYMBOL, " To ",y.split(',')[1],SYMBOL," Percent change of", PCCHANGE)
+					print(DateS.strftime("%d-%m-%Y , %H:%M:%S"),SYMBOL1," Price has changed from ",x.split(',')[1],SYMBOL, " To ",y.split(',')[1],SYMBOL," Percent change of", PCCHANGE,"%\n\n")
 					f.write("".join((str(y),'\n')))
 			ListOne = []
 			ListTwo = []
