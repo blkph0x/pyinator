@@ -45,6 +45,12 @@ def GetPrice():
 					pdiff = Pdiff0 - Pdiff1
 					PCDIFF = float(pdiff) / float(Pdiff0)
 					PCCHANGE = PCDIFF * 100
+					if PCCHANGE < 0:
+						ColorStart = '\033[91m'
+						CEND = '\033[0m'
+					if PCCHANGE > 0:
+						ColorStart = '\033[32m'
+						CEND = '\033[0m'
 					SYM = str(x.split(',')[0])
 					SYMLNG = len(SYM)
 					if SYM[SYMLNG-3] == 'S':
@@ -55,8 +61,8 @@ def GetPrice():
 						SYMBOL += SYM[SYMLNG-1]
 					SYMBOL1 = SYM.split(SYMBOL)[0]
 						
-					print(DateS.strftime("%d-%m-%Y , %H:%M:%S"),SYMBOL1," Price has changed from ",x.split(',')[1],SYMBOL, " To ",y.split(',')[1],SYMBOL," Percent change of", PCCHANGE,"%\n\n")
-					f.write("".join((str(y),'\n')))
+					print(DateS.strftime("%d,%m,%Y , %H,%M,%S"),SYMBOL1," Price has changed from ",x.split(',')[1],SYMBOL, " To ",y.split(',')[1],SYMBOL," Percent change of", ColorStart ,round(PCCHANGE, 3),CEND,"%\n\n")
+					f.write("".join((DateS.strftime("%d,%m,%Y,%H,%M,%S,"),str(y),',',str(round(PCCHANGE, 3)),'\n')))
 			ListOne = []
 			ListTwo = []
 		#Catch Ctrl+c
