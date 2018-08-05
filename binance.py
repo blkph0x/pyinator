@@ -6,8 +6,6 @@ filename = 'crypto.csv'
 f = open(filename,'a+')
 SYMBOL_LIST=[]
 
-List1 = np.genfromtxt('sym_list1',dtype=str,delimiter=',')
-
 def GetPrice():
 	
 	ListOne=[]
