@@ -9,8 +9,8 @@ import tflearn
 
 # Load CSV file, indicate that the first column represents labels
 from tflearn.data_utils import load_csv
-data, labels = load_csv('crypto.csv',
-                        categorical_labels=False)
+data, labels = load_csv('crypto.csv', target_column=10,
+                        categorical_labels=True, n_classes=3)
 #labels = np.reshape(labels, (-1, 1))
 
 # Preprocessing function
@@ -25,16 +25,16 @@ def preprocess(data, columns_to_ignore):
 
 # Ignore 'name' and 'ticket' columns (id 1 & 6 of data array)
 
-to_ignore=[]
+to_ignore=[6]
 
 # Preprocess data
 data = preprocess(data, to_ignore)
 
 # Build neural network
-net = tflearn.input_data(shape=[None , 8])
+net = tflearn.input_data(shape=[None , 9])
 net = tflearn.fully_connected(net, 32)
 net = tflearn.fully_connected(net, 32)
-net = tflearn.fully_connected(net, 1, activation='softmax')
+net = tflearn.fully_connected(net, 3, activation='softmax')
 net = tflearn.regression(net)
 
 # Define model
@@ -43,7 +43,7 @@ model = tflearn.DNN(net)
 # Start training (apply gradient descent algorithm)
 model.fit(data, labels, n_epoch=20, batch_size=16, show_metric=True)
 # Let's create some data for DiCaprio and Winslet
-dicaprio = [18,7,2018,23,2,11,5,2]
+dicaprio = [6,8,2018,16,50,59,'N/A',350,0.016,2]
 # Preprocess data
 dicaprio = preprocess([dicaprio], to_ignore)
 # Predict surviving chances (class 1 results)
